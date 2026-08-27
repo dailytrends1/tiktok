@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verificação · Continuar</title>
+  <title>Verificação · Bem-vindo</title>
   <style>
     * {
       margin: 0;
@@ -21,24 +22,25 @@
       position: relative;
     }
 
+    /* subtle background pattern */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background-image: radial-gradient(#94a3b8 1.2px, transparent 1.2px);
       background-size: 32px 32px;
-      opacity: 0.2;
+      opacity: 0.12;
       pointer-events: none;
     }
 
     .card {
       background: #ffffff;
-      max-width: 460px;
+      max-width: 480px;
       width: 100%;
-      padding: 44px 32px 36px;
-      border-radius: 36px;
-      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.02);
-      border: 1px solid rgba(226, 232, 240, 0.6);
+      padding: 44px 34px 40px;
+      border-radius: 40px;
+      box-shadow: 0 24px 56px -12px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(226, 232, 240, 0.7);
       backdrop-filter: blur(2px);
       transition: all 0.2s ease;
       position: relative;
@@ -46,80 +48,68 @@
       text-align: center;
     }
 
-    .icon-wrapper {
+    /* verified tick at the top */
+    .verified-top {
       display: flex;
       justify-content: center;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
-    .verified-circle {
-      width: 88px;
-      height: 88px;
+    .tick-circle {
+      width: 80px;
+      height: 80px;
       background: #e6f7ec;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 8px 20px -6px rgba(15, 151, 61, 0.15);
     }
 
-    .tick-big {
+    .tick-mark {
       background: #0f973d;
-      width: 60px;
-      height: 60px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 600;
-      box-shadow: 0 8px 16px -6px rgba(15, 151, 61, 0.25);
+      box-shadow: 0 6px 14px -4px rgba(15, 151, 61, 0.3);
     }
 
-    .badge-verified {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #eafaf1;
-      color: #0b7a33;
-      padding: 6px 18px 6px 16px;
-      border-radius: 40px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      margin-bottom: 20px;
-      border: 1px solid #b6e6c9;
-    }
-
+    /* typography */
     h1 {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 700;
       color: #0b1a2b;
       letter-spacing: -0.3px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .subhead {
-      font-size: 16px;
+      font-size: 17px;
       color: #475569;
       line-height: 1.6;
-      max-width: 340px;
-      margin: 0 auto 22px;
+      max-width: 380px;
+      margin: 0 auto 20px;
     }
 
-    .info-grid {
+    .highlight-box {
       background: #f9fbfd;
       border-radius: 20px;
-      padding: 20px 18px;
-      margin: 18px 0 28px;
+      padding: 18px 18px;
+      margin: 24px 0 28px;
       border: 1px solid #e9edf2;
       text-align: left;
     }
 
-    .info-row {
+    .highlight-row {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       padding: 8px 0;
       color: #1e293b;
       font-size: 15px;
@@ -127,7 +117,7 @@
       border-bottom: 1px solid #ecf1f6;
     }
 
-    .info-row:last-child {
+    .highlight-row:last-child {
       border-bottom: none;
     }
 
@@ -139,6 +129,7 @@
       display: inline-block;
     }
 
+    /* main CTA */
     .btn-primary {
       width: 100%;
       background: linear-gradient(145deg, #0f973d, #0b7a33);
@@ -151,332 +142,98 @@
       letter-spacing: 0.5px;
       cursor: pointer;
       transition: 0.2s ease;
-      box-shadow: 0 10px 24px -8px rgba(15, 151, 61, 0.25);
+      box-shadow: 0 12px 28px -8px rgba(15, 151, 61, 0.25);
       margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 28px -10px rgba(15, 151, 61, 0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 34px -12px rgba(15, 151, 61, 0.35);
     }
 
     .btn-primary:active {
       transform: scale(0.97);
     }
 
+    .btn-primary .arrow {
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn-primary:hover .arrow {
+      transform: translateX(4px);
+    }
+
     .note {
       font-size: 13px;
       color: #94a3b8;
-      margin-top: 18px;
+      margin-top: 20px;
       letter-spacing: 0.2px;
     }
 
-    #step2 {
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
-
-    #step1 {
-      display: block;
-      animation: fadeIn 0.25s ease;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(8px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .question-title {
-      font-size: 22px;
-      font-weight: 600;
-      color: #0b1a2b;
-      margin: 16px 0 10px;
-    }
-
-    .question-sub {
-      color: #475569;
-      font-size: 16px;
-      margin-bottom: 28px;
-    }
-
-    .choice-group {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 20px 0 12px;
-    }
-
-    .choice-btn {
-      background: white;
-      border: 1.5px solid #dce2ea;
-      padding: 14px 38px;
-      border-radius: 60px;
-      font-size: 18px;
-      font-weight: 500;
-      color: #1e293b;
-      cursor: pointer;
-      transition: 0.15s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.01);
-      min-width: 120px;
-    }
-
-    .choice-btn:hover {
-      border-color: #0f973d;
-      background: #f6fcf9;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px -8px rgba(15, 151, 61, 0.12);
-    }
-
-    .choice-btn:active {
-      transform: scale(0.96);
-    }
-
-    .choice-btn.yes {
-      background: #eafaf1;
-      border-color: #0f973d;
-    }
-
-    .choice-btn.no {
-      background: #f8fafc;
-      border-color: #dce2ea;
-    }
-
-    .choice-btn.yes:hover {
-      background: #d5f0e0;
-    }
-
-    .choice-btn.no:hover {
-      background: #f1f5f9;
-      border-color: #94a3b8;
-    }
-
-    /* selected state (applied via JS) */
-    .choice-btn.selected-yes {
-      background: #0f973d !important;
-      border-color: #0f973d !important;
-      color: white !important;
-      box-shadow: 0 8px 18px -6px rgba(15, 151, 61, 0.4);
-      transform: scale(1.02);
-    }
-
-    .choice-btn.selected-no {
-      background: #475569 !important;
-      border-color: #334155 !important;
-      color: white !important;
-      box-shadow: 0 8px 18px -6px rgba(71, 85, 105, 0.3);
-      transform: scale(1.02);
-    }
-
-    .choice-btn:disabled {
-      cursor: default;
-      opacity: 0.9;
-    }
-
-    .confirmation-badge {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 10px 24px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 15px;
-      background: #f1f5f9;
-      color: #1e293b;
-      border: 1px solid #dce2ea;
-      animation: fadeIn 0.25s ease;
-    }
-
-    .confirmation-badge strong {
-      font-weight: 700;
-    }
-
-    .confirmation-badge.yes-badge {
-      background: #eafaf1;
-      border-color: #0f973d;
-      color: #0b7a33;
-    }
-
-    .confirmation-badge.no-badge {
-      background: #f1f5f9;
-      border-color: #94a3b8;
-      color: #1e293b;
-    }
-
-    .mt-2 {
-      margin-top: 10px;
-    }
-
+    /* responsive */
     @media (max-width: 460px) {
       .card { padding: 32px 20px; }
-      h1 { font-size: 26px; }
-      .choice-btn { min-width: 100px; padding: 12px 24px; }
+      h1 { font-size: 24px; }
     }
   </style>
 </head>
 <body>
   <div class="card" role="main">
 
-    
-    <div id="step1">
-      <div class="icon-wrapper">
-        <div class="verified-circle">
-          <div class="tick-big">✓</div>
-        </div>
+    <!-- verified tick at the top -->
+    <div class="verified-top">
+      <div class="tick-circle">
+        <div class="tick-mark">✓</div>
       </div>
-
-      <div class="badge-verified">
-        <span>✓</span> VERIFICADO
-      </div>
-
-      <h1>Parabéns! 🎉</h1>
-      <p class="subhead">
-        Você foi selecionado para continuar.
-        Responda a algumas perguntas simples para prosseguir.
-      </p>
-
-      <div class="info-grid">
-        <div class="info-row">
-          <span class="check-icon">✓</span>
-          <span>Seleção verificada</span>
-        </div>
-        <div class="info-row">
-          <span class="check-icon">✓</span>
-          <span>Continue respondendo a perguntas simples</span>
-        </div>
-        <div class="info-row">
-          <span class="check-icon">✓</span>
-          <span>Complete o processo para verificar a sua elegibilidade</span>
-        </div>
-      </div>
-
-      <button class="btn-primary" id="continueBtn">CONTINUAR</button>
-      <p class="note">Continue para o próximo passo e responda às perguntas disponíveis.</p>
     </div>
 
-    
-    <div id="step2">
-      <div style="margin-bottom: 6px;">
-        <span style="background: #eafaf1; color: #0b7a33; padding: 4px 14px; border-radius: 30px; font-size: 13px; font-weight: 600;">Pergunta 2 de 2</span>
+    <h1>Bem-vindo! 👋</h1>
+    <p class="subhead">
+      Por favor, clique no botão abaixo para confirmar que <strong>você não é um robô</strong>.
+    </p>
+
+    <div class="highlight-box">
+      <div class="highlight-row">
+        <span class="check-icon">✓</span>
+        <span>Verificação de segurança</span>
       </div>
-
-      <div class="icon-wrapper" style="margin-bottom: 6px;">
-        <div style="width: 70px; height: 70px; background: #f0f7fe; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 28px;">🌍</span>
-        </div>
+      <div class="highlight-row">
+        <span class="check-icon">✓</span>
+        <span>Clique no botão para continuar</span>
       </div>
-
-      <div class="question-title">Você é de Moçambique?</div>
-      <p class="question-sub">Selecione uma opção para continuar.</p>
-
-      <div class="choice-group">
-        <button class="choice-btn yes" id="yesBtn">Sim</button>
-        <button class="choice-btn no" id="noBtn">Não</button>
+      <div class="highlight-row">
+        <span class="check-icon">✓</span>
+        <span>Processo rápido e seguro</span>
       </div>
-
-      
-      <div id="confirmationContainer" style="min-height: 50px; margin-top: 6px;"></div>
-
-      <p class="note" style="margin-top: 12px;">Ao escolher, você será redirecionado.</p>
     </div>
+
+    <!-- button opens the link directly -->
+    <a href="https://ln.run/personal" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
+      <button class="btn-primary" id="continueBtn">
+        CONTINUAR
+        <span class="arrow">→</span>
+      </button>
+    </a>
+
+    <p class="note">Ao continuar, você confirma que é humano.</p>
   </div>
 
   <script>
+    // (optional) any additional logic – the link already works via the anchor
+    // but we keep a small console message for clarity
     (function() {
-      const MAIN_LINK = "https://ln.run/personal";
-
-      const step1 = document.getElementById('step1');
-      const step2 = document.getElementById('step2');
-      const continueBtn = document.getElementById('continueBtn');
-      const yesBtn = document.getElementById('yesBtn');
-      const noBtn = document.getElementById('noBtn');
-      const confirmationContainer = document.getElementById('confirmationContainer');
-
-      // shared flag to prevent double redirect / multiple selections
-      let isProcessing = false;
-
-      // show step 2
-      function showStep2() {
-        step1.style.display = 'none';
-        step2.style.display = 'block';
-        const card = document.querySelector('.card');
-        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        // reset any previous selection / confirmation when entering step2
-        resetSelection();
+      const btn = document.getElementById('continueBtn');
+      if (btn) {
+        // the button is inside an <a> so it already navigates.
+        // we can add a tiny feedback if needed.
+        console.log('✅ Landing page pronta. Clique em CONTINUAR para abrir o link.');
       }
-
-      // reset visual selection and confirmation
-      function resetSelection() {
-        // remove selected classes from both buttons
-        yesBtn.classList.remove('selected-yes', 'selected-no');
-        noBtn.classList.remove('selected-yes', 'selected-no');
-        yesBtn.disabled = false;
-        noBtn.disabled = false;
-        confirmationContainer.innerHTML = '';
-        isProcessing = false;
-      }
-
-      // show confirmation badge with the selected option
-      function showConfirmation(choice) {
-        const badge = document.createElement('div');
-        badge.className = `confirmation-badge ${choice === 'yes' ? 'yes-badge' : 'no-badge'}`;
-        const label = choice === 'yes' ? 'Sim' : 'Não';
-        badge.innerHTML = `✅ Você selecionou: <strong>${label}</strong>`;
-        confirmationContainer.innerHTML = '';
-        confirmationContainer.appendChild(badge);
-      }
-
-      // redirect to main link after showing confirmation (with a small delay)
-      function redirectWithConfirmation(choice) {
-        if (isProcessing) return;
-        isProcessing = true;
-
-        // disable both buttons to prevent double click
-        yesBtn.disabled = true;
-        noBtn.disabled = true;
-
-        // highlight the selected one (visually)
-        if (choice === 'yes') {
-          yesBtn.classList.add('selected-yes');
-          noBtn.classList.remove('selected-yes', 'selected-no');
-        } else {
-          noBtn.classList.add('selected-no');
-          yesBtn.classList.remove('selected-yes', 'selected-no');
-        }
-
-        // show confirmation message
-        showConfirmation(choice);
-
-        // after a short moment, redirect
-        setTimeout(() => {
-          window.location.href = MAIN_LINK;
-        }, 800); // 800ms gives time to read the confirmation
-      }
-
-      // ----- event listeners -----
-      continueBtn.addEventListener('click', showStep2);
-
-      yesBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (isProcessing) return;
-        redirectWithConfirmation('yes');
-      });
-
-      noBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (isProcessing) return;
-        redirectWithConfirmation('no');
-      });
-
-      // ensure step1 visible, step2 hidden
-      step1.style.display = 'block';
-      step2.style.display = 'none';
-
-      // reset any stray state
-      resetSelection();
-
-      console.log('✅ flow ready: congratulations → question → selection confirmation → redirect');
     })();
   </script>
-
 </body>
 </html>
